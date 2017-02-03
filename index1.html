@@ -1,0 +1,23 @@
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <iframe id="analyzer-frame" src="http://localhost:8080/pentaho/api/repos/%3Apublic%3ASteel%20Wheels%3ALeading%20Product%20Lines%20%28pivot%20table%29.xanalyzer/editor"></iframe>
+  </body>
+  <script type="text/javascript">
+    document.domain = "127.0.0.1";
+
+      window.onAnalyzerReady = function(api, frameId) {
+        // Perform Analyzer API actions
+        console.log(frameId);
+      };
+    </script>
+    <style type="text/css">
+      #analyzer-frame{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+</html>
