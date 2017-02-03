@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Sample Report</title>
+     <style type="text/css">
+      #container{
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container" ></div>
+  </body>
+  <script src="http://ec2-54-149-209-200.us-west-2.compute.amazonaws.com/jasperserver-pro/client/visualize.js"></script>
+   <script type="text/javascript">
+     visualize({
+          auth: {
+              name: "superuser",
+              password: "Med1a1205",
+              organization: "organization_1"
+          }
+      }, function (v) {
+          console.log(v);
+          //render report from provided resource
+          v("#container").report({
+              resource: "/public/Samples/Reports/AllAccounts",
+              error: handleError
+          });
+
+          //show error
+          function handleError(err) {
+              alert(err.message);
+          }
+
+      });
+
+   </script>
+</html>

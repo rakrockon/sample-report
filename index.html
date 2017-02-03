@@ -10,24 +10,46 @@
   </head>
 
   <body>
+    <button id="previousPage">Previous Page</button><button id="nextPage">Next Page</button>
     <div id="container" ></div>
   </body>
-  <script src="http://ec2-54-149-209-200.us-west-2.compute.amazonaws.com/jasperserver-pro/client/visualize.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script src="https://mobiledemo.jaspersoft.com/jasperserver-pro/client/visualize.js"></script>
    <script type="text/javascript">
      visualize({
           auth: {
-              name: "superuser",
-              password: "Med1a1205",
+              name: "joeuser",
+              password: "joeuser",
               organization: "organization_1"
           }
       }, function (v) {
-          console.log(v);
+
           //render report from provided resource
-          v("#container").report({
+          var report = v.report({
               resource: "/public/Samples/Reports/AllAccounts",
+              container: "#container",
               error: handleError
           });
-
+          $("#previousPage").click(function() {
+              var currentPage = report.pages() || 1;
+       
+              report
+                  .pages(--currentPage)
+                  .run()
+                      .fail(function(err) { alert(err); });
+          });
+       
+          $("#nextPage").click(function() {
+              var currentPage = report.pages() || 1;
+       
+              report
+                  .pages(++currentPage)
+                  .run()
+                      .fail(function(err) { alert(err); });
+          });
           //show error
           function handleError(err) {
               alert(err.message);
